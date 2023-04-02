@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+// Object 
+
+message Link {
+  int64 id = 1;
+  string title = 2;
+  string destination = 3;
+  string shortlink = 4;
+  int64 count = 5;
+}
+
+message LinkList {
+  repeated Link links = 1;
+}
+
+message LinkById{
+    Link link = 1;
+}
+
+message LinkId {
+  int64 id = 1;
+}
+
+message Empty {}
+
+// Service 
+service LinkService {
+  // Create 
+  rpc AddLink (Link) returns (Link) {}
+  // Read 
+  rpc GetAll (Empty) returns (LinkList) {}
+  rpc GetLink (LinkId) returns (LinkById) {}
+  // Update
+  rpc EditLink (Link) returns (Link) {}
+  // Delete
+  rpc DeleteLink (LinkId) returns (Empty) {}
+}
+
