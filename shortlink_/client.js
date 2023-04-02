@@ -1,9 +1,9 @@
-// Import package 
-const grpc = require("@grpc/grpc-js");
-var protoLoader = require("@grpc/proto-loader");
+// Import package
+const grpc = require('@grpc/grpc-js');
+var protoLoader = require('@grpc/proto-loader');
 
-// Define proto path 
-const PROTO_PATH = "./shortlink.proto"
+// Define proto path
+const PROTO_PATH = './shortlink.proto';
 
 const options = {
   keepCase: true,
@@ -15,13 +15,10 @@ const options = {
 
 var packageDefinition = protoLoader.loadSync(PROTO_PATH, options);
 
-// Load service 
+// Load service
 const LinkService = grpc.loadPackageDefinition(packageDefinition).LinkService;
 
-// Define client 
-const client = new LinkService(
-  "127.0.0.1:50051",
-  grpc.credentials.createInsecure()
-)
+// Define client
+const client = new LinkService('127.0.0.1:50052', grpc.credentials.createInsecure());
 
 module.exports = client;

@@ -33,12 +33,22 @@ server.addService(linkProto.LinkService.service, {
   // Create
   addLink: (call, callback) => {
     const _link = { ...call.request };
-    link.link.push(_link);
-    callback(null, _link);
+    let data = [];
+    connection.connect(function (err) {
+      console.log(err);
+      connection.query(`INSERT INTO links (title, destination,shortlink) VALUES ('${_link.title}', '${_link.destination}', '${_link.shortlink}')`, function (err, result) {
+        const response = {
+          title: _link.title,
+        };
+        callback(null, response);
+      });
+    });
   },
+
   // Read
   getAll: (call, callback) => {
     connection.connect(function (err) {
+      console.log(err);
       connection.query('SELECT * FROM links', function (err, result) {
         console.log(result);
         callback(null, {
@@ -47,53 +57,63 @@ server.addService(linkProto.LinkService.service, {
       });
     });
   },
+
   getLink: (call, callback) => {
     const linkId = call.request.id;
     connection.connect(function (err) {
-      connection.query(`SELECT * FROM links WHERE id='1`, function (err, result) {
-        console.log(linkId);
-        callback(null, { link: Object.values(JSON.parse(JSON.stringify(result))) });
+      connection.query(`SELECT * FROM links WHERE id=${linkId} LIMIT 1`, function (err, result) {
+        let res = JSON.parse(JSON.stringify(result));
+        callback(null, {
+          link: res[0],
+        });
       });
     });
   },
 
   // Update
   editLink: (call, callback) => {
-    const linkId = call.request.id;
-    const linkItem = link.link.find(({ id }) => linkId == id);
-    linkItem.nama = call.request.nama;
-    linkItem.nrp = call.request.nrp;
-    linkItem.nilai = call.request.nilai;
-    callback(null, linkItem);
+    const _link = { ...call.request };
+    connection.connect(function (err) {
+      connection.query(
+        `UPDATE links SET ? WHERE id=?`,
+        [
+          {
+            title: _link.title,
+            destination: _link.destination,
+            shortlink: _link.shortlink,
+          },
+          _link.id,
+        ],
+        function (err, result) {
+          callback(null, _link);
+        }
+      );
+    });
   },
-  // editLink: (call, callback) => {
-  //   const linkId = call.request.id;
-  //   const linkItem = link.link.find(({ id }) => linkId == id);
-  //   if (!linkItem) {
-  //     const error = new Error(`Link dengan id ${linkId} tidak ditemukan`);
-  //     console.error(error);
-  //     callback(error, null);
-  //     return;
-  //   }
-  //   linkItem.nama = call.request.nama;
-  //   linkItem.nrp = call.request.nrp;
-  //   linkItem.nilai = call.request.nilai;
-  //   callback(null, linkItem);
-  // },
+
+  openLink: (call, callback) => {
+    const linkId = call.request.id;
+    connection.connect(function (err) {
+      connection.query(`UPDATE links SET count = count + 1 WHERE id=${linkId}`, function (err, result) {
+        callback(null, linkId);
+      });
+    });
+  },
 
   // Delete
   deleteLink: (call, callback) => {
     const linkId = call.request.id;
-    // connection.connect(function (err) {
-    connection.query(`SELECT * FROM links WHERE id=${linkId}`, function (err, result) {
-      console.log(linkId);
-      callback(null, { link: Object.values(JSON.parse(JSON.stringify(result))) });
+    connection.connect(function (err) {
+      connection.query(`DELETE  FROM links WHERE id=${linkId}`, function (err, result) {
+        let res = JSON.parse(JSON.stringify(result));
+        callback(null, null);
+      });
     });
   },
 });
 
 // Start server
-server.bindAsync('127.0.0.1:50051', grpc.ServerCredentials.createInsecure(), (error, port) => {
-  console.log('Server running at http://127.0.0.1:50051');
+server.bindAsync('127.0.0.1:50052', grpc.ServerCredentials.createInsecure(), (error, port) => {
+  console.log('Server running at http://127.0.0.1:50052');
   server.start();
 });

@@ -18,6 +18,12 @@ message LinkById{
     Link link = 1;
 }
 
+message AddLinkParam{
+ string title = 1;
+  string destination = 2;
+  string shortlink = 3;
+}
+
 message LinkId {
   int64 id = 1;
 }
@@ -27,7 +33,7 @@ message Empty {}
 // Service 
 service LinkService {
   // Create 
-  rpc AddLink (Link) returns (Link) {}
+  rpc AddLink (AddLinkParam) returns (Link) {}
   // Read 
   rpc GetAll (Empty) returns (LinkList) {}
   rpc GetLink (LinkId) returns (LinkById) {}
@@ -35,5 +41,5 @@ service LinkService {
   rpc EditLink (Link) returns (Link) {}
   // Delete
   rpc DeleteLink (LinkId) returns (Empty) {}
+  rpc OpenLink (LinkId) returns (LinkId) {}
 }
-
