@@ -15,9 +15,8 @@ gRPC adalah singkatan dari "Remote Procedure Call (RPC) yang dioptimalkan dengan
 **Hasil:**
 - Tampilan terminal ketika program dijalankan 
 ![WhatsApp Image 2023-04-04 at 04 14 32](https://user-images.githubusercontent.com/102397053/229630611-3fde387f-7d9c-4fb5-a11f-a5978026683d.jpg)
-
 - Tampilan database setelah program dijalankan
-![WhatsApp Image 2023-04-04 at 04 15 59](https://user-images.githubusercontent.com-b0875bc0f020.jpg)
+![WhatsApp Image 2023-04-04 at 04 15 59](https://user-images.githubusercontent.com/102397053/229631542-6b8f0cd3-8b3d-458e-91b7-65e0b084eade.jpg)
 - Tampilan UI
 ![WhatsApp Image 2023-04-04 at 04 19 34](https://user-images.githubusercontent.com/102397053/229630628-b75b83d6-3481-43f4-a326-60b14e656335.jpg)
 
