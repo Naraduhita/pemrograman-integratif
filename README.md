@@ -10,7 +10,7 @@ gRPC adalah singkatan dari "Remote Procedure Call (RPC) yang dioptimalkan dengan
 - Untuk tampilan sudah ada dan jalan namun masih menggunakan express dan belum disambungkan dengan grpc.
 **Cara Menjalankan:**
 - Menjalankan server dengan `npm start`
-- Menjalankan client dengan `npm run dev`
+- Menjalankan client dengan `node run`
 
 **Hasil:**
 - Database
