@@ -7,7 +7,7 @@ gRPC adalah singkatan dari "Remote Procedure Call (RPC) yang dioptimalkan dengan
 - Membuat file client.js berfungsi membuat koneksi ke server dan mengirimkan permintaan ke server. File ini juga akan menggunakan definisi service dan pesan dari file protobuf untuk membuat koneksi dan mengirimkan permintaan.
 - Membuat file run.js berfungsi menjalankan program dan input data.
 - Menggunakan database `MySql` yang bernama `shortlink`dan tabel `links` yang berisi 5 kolom yang terdiri dari `id`, `title`, `destination`, `shortlink`, dan `count`.
-
+- Untuk tampilan sudah ada dan jalan namun masih menggunakan express dan belum disambungkan dengan grpc.
 **Cara Menjalankan:**
 - Menjalankan server dengan `npm start`
 - Menjalankan client dengan `npm run dev`
