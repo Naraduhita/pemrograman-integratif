@@ -2,7 +2,7 @@
 
 Server-Sent Events (SSE) merupakan teknologi web yang memungkinkan server untuk **mengirimkan data secara asinkron** ke browser klien secara langsung. Dalam model SSE, klien browser **mengirimkan permintaan HTTP ke server** dan server membangun koneksi yang berkelanjutan untuk mengirimkan respons. Setelah koneksi terjalin, server dapat **secara periodik mengirimkan data ke klien** tanpa perlu diminta kembali oleh klien. Ini memungkinkan server untuk mengirimkan pembaruan langsung, real-time, dan berkelanjutan kepada klien tanpa perlu polling berulang-ulang.
 
-Menjalankan program dengan `node.js`
+Menjalankan program dengan `node index.js`
 
 Hasil percobaan SSE:
 
