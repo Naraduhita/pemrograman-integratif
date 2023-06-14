@@ -4,5 +4,5 @@ Server-Sent Events (SSE) merupakan teknologi web yang memungkinkan server untuk 
 
 Hasil percobaan SSE:
 
-<img src="https://github.com/Naraduhita/pemrograman-integratif/assets/102397053/e3707f2d-f011-410a-9bc4-238d8916f908" height="500"/>
+<img src="https://github.com/Naraduhita/pemrograman-integratif/assets/102397053/e3707f2d-f011-410a-9bc4-238d8916f908" height="600"/>
 
